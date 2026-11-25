@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Booking | RoyalHaven Hotel</title>
+<style>
+:root{
+  --gold:#d4a84f;--gold2:#f2d28a;--dark:#111827;--dark2:#1f2937;
+  --cream:#faf7f0;--white:#fff;--muted:#6b7280;--shadow:0 15px 40px rgba(0,0,0,.12);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:Arial,Helvetica,sans-serif;color:var(--dark);background:var(--cream);line-height:1.6}
+a{text-decoration:none;color:inherit}
+img{max-width:100%;display:block}
+.container{width:min(1120px,92%);margin:auto}
+.navbar{position:sticky;top:0;z-index:1000;background:rgba(17,24,39,.96);backdrop-filter:blur(10px);color:#fff}
+.nav-inner{min-height:72px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.logo{font-size:25px;font-weight:800;letter-spacing:1px}.logo span{color:var(--gold)}
+.nav-links{display:flex;gap:22px;list-style:none;align-items:center;flex-wrap:wrap}
+.nav-links a{font-size:14px;color:#eee;transition:.3s}.nav-links a:hover{color:var(--gold);transform:translateY(-2px)}
+.btn{display:inline-block;padding:13px 22px;border-radius:8px;background:var(--gold);color:#111;font-weight:700;border:0;cursor:pointer;transition:.3s}
+.btn:hover{transform:translateY(-3px);box-shadow:0 10px 22px rgba(212,168,79,.3)}
+.btn-outline{background:transparent;color:#fff;border:1px solid var(--gold)}
+.hero{min-height:88vh;background:linear-gradient(90deg,rgba(0,0,0,.72),rgba(0,0,0,.2)),url('https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1800&q=85') center/cover;display:grid;place-items:center;color:#fff;text-align:center}
+.hero-content{animation:fadeUp 1s ease both}
+.hero h1{font-size:clamp(40px,7vw,76px);line-height:1.05;margin-bottom:18px}
+.hero p{font-size:18px;max-width:680px;margin:0 auto 28px;color:#eee}
+.badge{display:inline-block;color:var(--gold2);letter-spacing:3px;font-size:13px;font-weight:700;margin-bottom:14px}
+.section{padding:80px 0}.section-title{text-align:center;margin-bottom:42px}.section-title h2{font-size:38px;margin-bottom:10px}.section-title p{color:var(--muted)}
+.grid{display:grid;gap:25px}.grid-3{grid-template-columns:repeat(3,1fr)}.grid-2{grid-template-columns:repeat(2,1fr)}
+.card{background:#fff;border-radius:16px;overflow:hidden;box-shadow:var(--shadow);transition:.35s}.card:hover{transform:translateY(-8px)}
+.card-body{padding:23px}.card h3{margin-bottom:8px;font-size:22px}.muted{color:var(--muted)}
+.card img{height:230px;width:100%;object-fit:cover}
+.price{font-size:22px;color:#a8781f;font-weight:800;margin:10px 0}.price small{font-size:13px;color:var(--muted);font-weight:400}
+.features{display:flex;gap:9px;flex-wrap:wrap;margin:15px 0}.pill{background:#f4efe3;padding:6px 10px;border-radius:20px;font-size:12px}
+.banner{padding:70px 0;background:linear-gradient(120deg,#111827,#374151);color:#fff;text-align:center}
+.page-head{padding:90px 0;background:linear-gradient(90deg,rgba(0,0,0,.72),rgba(0,0,0,.3)),url('https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?auto=format&fit=crop&w=1800&q=80') center/cover;color:#fff;text-align:center}
+.page-head h1{font-size:52px}.page-head p{color:#ddd}
+.form-card{background:#fff;padding:30px;border-radius:16px;box-shadow:var(--shadow)}
+.form-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+label{font-weight:700;font-size:14px;display:block;margin-bottom:6px}
+input,select,textarea{width:100%;padding:13px;border:1px solid #ddd;border-radius:8px;outline:none;font:inherit;background:#fff}
+input:focus,select:focus,textarea:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(212,168,79,.12)}
+textarea{min-height:140px;resize:vertical}.full{grid-column:1/-1}
+.footer{background:#0b1120;color:#cbd5e1;padding:55px 0 20px}.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:35px}.footer h3{color:#fff;margin-bottom:14px}.footer a{display:block;margin:8px 0;color:#cbd5e1}.footer a:hover{color:var(--gold)}.copyright{text-align:center;border-top:1px solid #273244;margin-top:35px;padding-top:18px;font-size:13px}
+.stat{background:#fff;padding:28px;border-radius:14px;text-align:center;box-shadow:var(--shadow)}.stat h3{font-size:34px;color:#a8781f}
+.quote{background:#fff;padding:28px;border-left:4px solid var(--gold);box-shadow:var(--shadow);border-radius:12px}
+.gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.gallery img{height:230px;width:100%;object-fit:cover;border-radius:12px;transition:.4s}.gallery img:hover{transform:scale(1.04);filter:brightness(.8)}
+.icon{font-size:30px;margin-bottom:10px}.center{text-align:center}
+.auth{min-height:calc(100vh - 72px);display:grid;place-items:center;padding:50px 0;background:linear-gradient(135deg,#f8f1df,#fff)}
+.auth-box{width:min(450px,92%);background:#fff;padding:35px;border-radius:18px;box-shadow:var(--shadow)}
+.auth-box h1{text-align:center;margin-bottom:8px}.auth-box .muted{text-align:center;margin-bottom:25px}
+.mt{margin-top:20px}
+@keyframes fadeUp{from{opacity:0;transform:translateY(35px)}to{opacity:1;transform:translateY(0)}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.float{animation:float 3s ease-in-out infinite}
+@media(max-width:850px){
+ .nav-inner{padding:12px 0;align-items:flex-start}.nav-links{gap:12px}
+ .grid-3,.grid-2,.footer-grid{grid-template-columns:1fr}
+ .form-grid{grid-template-columns:1fr}.full{grid-column:auto}
+ .gallery{grid-template-columns:repeat(2,1fr)}.page-head h1{font-size:40px}
+}
+@media(max-width:520px){.nav-links{font-size:12px}.logo{font-size:20px}.hero{min-height:78vh}.section{padding:55px 0}.gallery{grid-template-columns:1fr}}
+</style><link rel="stylesheet" href="css/extra.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<script src="js/app.js"></script>
+</head><body>
+<nav class="navbar"><div class="container nav-inner">
+<a class="logo" href="index.html">ROYAL<span>HAVEN</span></a>
+<ul class="nav-links">
+<li><a href="index.html">Home</a></li><li><a href="rooms.html">Rooms</a></li>
+<li><a href="services.html">Services</a></li><li><a href="gallery.html">Gallery</a></li>
+<li><a href="about.html">About</a></li><li><a href="contact.html">Contact</a></li>
+<li><a class="btn" href="booking.html">Book Now</a></li>
+</ul></div></nav>
+
+<section class="page-head"><div class="container"><h1>Book Your Stay</h1><p>Fill in the details below to request your reservation.</p></div></section>
+<section class="section"><div class="container grid grid-2">
+<div class="form-card" id="main"><h2>Reservation Form</h2><p class="muted">Choose your room, add pickup if needed, then pay to confirm.</p>
+<p class="mt" style="background:#fff7e0;border:1px solid var(--gold);border-radius:10px;padding:12px 14px;font-size:14px">🎁 <b>Special offer:</b> book exactly <b>3 nights</b> and get <b>15% off</b> the room charge.</p>
+<form id="bf" class="mt"><div class="form-grid">
+<div><label>Full Name</label><input id="name" required placeholder="Enter your name"></div>
+<div><label>Email</label><input id="email" type="email" required placeholder="you@example.com"></div>
+<div><label>Phone (WhatsApp)</label><input id="phone" type="tel" required pattern="[0-9]{10}" maxlength="10" placeholder="10-digit mobile"></div>
+<div><label>Room Type</label><select id="room" required><option value="">Select Room</option><option>Budget Room</option><option>Deluxe Room</option><option>Premium Room</option><option>Executive Suite</option><option>Royal Suite</option></select></div>
+<div><label>Check-in</label><input id="cin" type="date" required></div><div><label>Check-out</label><input id="cout" type="date" required></div>
+<div><label>Adults</label><input id="ad" type="number" min="1" value="1"></div><div><label>Children</label><input id="ch" type="number" min="0" value="0"></div>
+<div class="full"><label style="display:flex;gap:10px;align-items:center;cursor:pointer"><input id="pickup" type="checkbox" style="width:auto"> Add airport / station / live-location pickup (+₹200)</label></div>
+<div class="full box hide" id="pbox"><div class="form-grid">
+<div><label>Pickup From</label><select id="pfrom"><option>Pune Airport</option><option>Pune Railway Station</option><option>Shivajinagar Bus Stand</option><option>Live location (GPS)</option><option>Other address</option></select></div>
+<div><label>Pickup Date &amp; Time</label><input id="ptime" type="datetime-local"></div>
+<div class="full hide" id="gpsbox"><p class="muted" style="margin-bottom:10px">RoyalHaven needs your permission to read your current location for pickup. Your browser will ask you to allow it, and GPS / location must be switched on in your device.</p><button type="button" class="btn" id="gpsbtn">Allow &amp; use my location</button><p id="gmsg" class="err"></p></div>
+<div class="full"><label>Pickup map <span class="muted" style="font-weight:400">(gold circle = 20 km pickup zone around the hotel)</span></label><div id="map" style="height:320px;border-radius:12px;border:1px solid #ddd"></div><p id="pmsg" class="muted" style="font-size:14px;margin-top:6px"></p><p id="glinks" style="font-size:14px;margin-top:6px"></p></div>
+<div class="full"><label>Pickup Mobile Number</label><div class="row"><input id="pmob" type="tel" maxlength="10" placeholder="10-digit mobile for OTP"><button type="button" class="btn" id="sotp">Send OTP</button></div></div>
+<div class="full hide" id="obox"><label>Enter 6-digit OTP</label><div class="row"><input id="otp" maxlength="6" inputmode="numeric" placeholder="______"><button type="button" class="btn" id="votp">Verify</button></div></div>
+<p class="full" id="omsg"></p></div></div>
+<div class="full"><label>Special Request</label><textarea id="note" placeholder="Any special request?"></textarea></div>
+<div class="full"><button class="btn" style="width:100%" type="submit">Proceed to Payment</button></div>
+</div></form></div>
+<div><div class="card"><img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1000&q=80" alt="Hotel"><div class="card-body"><h3>Why Book Direct?</h3><p class="muted">✓ Best available room rates<br>✓ Free WhatsApp support<br>✓ Secure payment<br>✓ Airport and station pickup<br>✓ Easy cancellation support</p></div></div>
+<div class="sum" id="sum"></div></div>
+</div></section>
+<div class="modal hide" id="pay"><div class="modal-box"><h2>Secure Payment</h2><p class="muted" id="amt"></p>
+<div class="tabs mt"><button type="button" data-m="Razorpay" class="on">Razorpay</button><button type="button" data-m="UPI">UPI</button><button type="button" data-m="Card">Card</button><button type="button" data-m="Pay at Hotel">At Hotel</button></div>
+<div id="m-Razorpay"><p class="muted">Pay securely with UPI, cards, net banking or wallets through Razorpay. A Razorpay window will open.</p></div>
+<div id="m-UPI" class="hide"><label>UPI ID</label><input id="upi" placeholder="name@upi"></div>
+<div id="m-Card" class="hide"><label>Card Number</label><input id="cn" maxlength="19" inputmode="numeric" placeholder="1234 5678 9012 3456"><div class="row mt"><div><label>Expiry</label><input id="ce" maxlength="5" placeholder="MM/YY"></div><div><label>CVV</label><input id="cv" type="password" maxlength="3" placeholder="123"></div></div></div>
+<div id="m-Pay at Hotel" class="hide"><p class="muted">Reserve now and pay when you arrive. Booking stays <b>Pending</b> until check-in.</p></div>
+<p class="err" id="perr"></p>
+<button class="btn mt" style="width:100%" id="paybtn">Pay Now</button><button class="btn mt" style="width:100%;background:#eee" id="pcancel">Cancel</button>
+<p class="muted center mt" style="font-size:12px">Razorpay runs in TEST mode: no real money is charged. UPI / Card / At Hotel tabs are simulated.</p></div></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+const PR={'Budget Room':2499,'Deluxe Room':3999,'Premium Room':5499,'Executive Suite':7499,'Royal Suite':11999},
+ PICK=200,                         // pickup charge (Rs)
+ OFFER_NIGHTS=3,OFFER_PCT=15,      // special offer: exactly 3 nights = 15% off room charge
+ RZP_KEY='rzp_test_TtKkNTDFP7Hoc0',// Razorpay TEST key id (public). NEVER put the secret key in frontend code.
+ HOTEL=[18.5065,73.8075],RADIUS=20000, // Rambaug Colony, Kothrud, Pune 411038 (approx. - verify on Google Maps)
+ FIX={'Pune Airport':[18.5793,73.9089],'Pune Railway Station':[18.5286,73.8742],'Shivajinagar Bus Stand':[18.5308,73.8478]},
+ $=id=>document.getElementById(id);
+let otp=null,verified=false,method='Razorpay',b=null,map=null,pin=null,route=null,pl=null;
+const today=new Date().toISOString().slice(0,10);$('cin').min=$('cout').min=today;
+const ses=RH.session();if(ses&&ses.role=='user'){$('name').value=ses.name;$('email').value=ses.email;$('phone').value=ses.phone||''}
+function nights(){const d=Math.round((new Date($('cout').value)-new Date($('cin').value))/864e5);return d>0?d:0}
+function calc(){const n=nights(),base=(PR[$('room').value]||0)*n,disc=n==OFFER_NIGHTS?Math.round(base*OFFER_PCT/100):0,room=base-disc,pick=$('pickup').checked?PICK:0,tax=Math.round(room*.12);return{n,base,disc,room,pick,tax,total:room+pick+tax}}
+function render(){const c=calc();$('sum').innerHTML='<h3>Price Summary</h3><div><span>Room ('+c.n+' night'+(c.n==1?'':'s')+')</span><span>'+RH.money(c.base)+'</span></div>'+(c.disc?'<div style="color:#15803d"><span>'+OFFER_NIGHTS+'-night offer ('+OFFER_PCT+'% off)</span><span>-'+RH.money(c.disc)+'</span></div>':'')+'<div><span>Pickup</span><span>'+RH.money(c.pick)+'</span></div><div><span>GST 12%'+(c.disc?' (after discount)':'')+'</span><span>'+RH.money(c.tax)+'</span></div><div class="tot"><span>Total</span><span>'+RH.money(c.total)+'</span></div>'}
+['room','cin','cout'].forEach(i=>$(i).addEventListener('change',render));render();
+
+/* ---------- MAP + PICKUP LOCATION ---------- */
+const GM='https://www.google.com/maps/',HOTEL_LINK=GM+'search/?api=1&query='+HOTEL.join(',');
+function gLinks(p){$('glinks').innerHTML='<a href="'+HOTEL_LINK+'" target="_blank" rel="noopener" style="color:#a8781f;font-weight:700">📍 Hotel on Google Maps</a>'+(p?' &nbsp;|&nbsp; <a href="'+GM+'dir/?api=1&origin='+p.lat+','+p.lng+'&destination='+HOTEL.join(',')+'&travelmode=driving" target="_blank" rel="noopener" style="color:#a8781f;font-weight:700">🧭 Route to hotel in Google Maps</a>':'')}
+function initMap(){
+ if(map){setTimeout(()=>map.invalidateSize(),150);return}
+ if(typeof L==='undefined'){$('pmsg').textContent='Map could not load (check your internet connection).';return}
+ map=L.map('map').setView(HOTEL,11);
+ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'&copy; OpenStreetMap contributors'}).addTo(map);
+ L.marker(HOTEL).addTo(map).bindPopup('<b>RoyalHaven Hotel</b><br>Rambaug Colony, Kothrud, Pune 411038');
+ const zone=L.circle(HOTEL,{radius:RADIUS,color:'#d4a84f',weight:2,fillColor:'#d4a84f',fillOpacity:.08}).addTo(map);
+ map.fitBounds(zone.getBounds());
+ map.on('click',e=>{if($('pfrom').value=='Other address')setPick(e.latlng.lat,e.latlng.lng,'Pinned location')});
+ setTimeout(()=>map.invalidateSize(),200);
+}
+function setPick(lat,lng,label){
+ if(!map)return;
+ const km=map.distance(HOTEL,[lat,lng])/1000;
+ if(pin)map.removeLayer(pin);if(route)map.removeLayer(route);
+ pin=L.marker([lat,lng]).addTo(map).bindPopup(label).openPopup();
+ route=L.polyline([[lat,lng],HOTEL],{color:'#111827',dashArray:'6 6'}).addTo(map);
+ map.fitBounds(L.latLngBounds([lat,lng],HOTEL).pad(.3));
+ if(km>RADIUS/1000){pl=null;gLinks(null);$('pmsg').className='err';$('pmsg').textContent='That spot is '+km.toFixed(1)+' km from the hotel. Pickup is only available within 20 km.';return}
+ pl={lat,lng,km,from:(FIX[label]?label:label+' ('+lat.toFixed(4)+', '+lng.toFixed(4)+')')};
+ gLinks(pl);$('pmsg').className='ok';$('pmsg').textContent='✓ '+label+' selected: '+km.toFixed(1)+' km (straight line) from the hotel.';
+}
+function pickChange(){
+ const v=$('pfrom').value;pl=null;$('gmsg').textContent='';gLinks(null);
+ if(map){if(pin){map.removeLayer(pin);pin=null}if(route){map.removeLayer(route);route=null}}
+ $('gpsbox').classList.toggle('hide',v!='Live location (GPS)');
+ if(FIX[v]){$('pmsg').className='muted';setPick(FIX[v][0],FIX[v][1],v)}
+ else if(v=='Other address'){$('pmsg').className='muted';$('pmsg').textContent='Tap on the map to drop your pickup pin (inside the gold circle).'}
+ else{$('pmsg').className='muted';$('pmsg').textContent='Press "Allow & use my location" to detect where you are.'}
+}
+function gpsError(t){$('gmsg').textContent=t;$('gpsbtn').textContent='Try again'}
+function getPos(){
+ $('gmsg').className='muted';$('gmsg').textContent='Detecting your location...';
+ navigator.geolocation.getCurrentPosition(p=>{$('gmsg').textContent='';$('gpsbtn').textContent='Refresh my location';setPick(p.coords.latitude,p.coords.longitude,'Live location')},
+ e=>{$('gmsg').className='err';
+  if(e.code==1)gpsError('Location permission is blocked. Click the lock icon next to the web address, set Location to "Allow", then press Try again.');
+  else if(e.code==2)gpsError('Your location is switched off or unavailable. Turn on GPS / Location in your phone or computer settings, then press Try again.');
+  else gpsError('Location request timed out. Make sure GPS is on and press Try again.')},
+ {enableHighAccuracy:true,timeout:15000,maximumAge:0});
+}
+$('gpsbtn').onclick=()=>{
+ if(!navigator.geolocation||!window.isSecureContext){$('gmsg').className='err';$('gmsg').textContent='Live location only works on https:// or localhost. Open the site that way, or choose "Other address" and drop a pin on the map.';return}
+ if(navigator.permissions&&navigator.permissions.query){navigator.permissions.query({name:'geolocation'}).then(p=>{if(p.state=='denied'){$('gmsg').className='err';gpsError('Location permission is blocked. Click the lock icon next to the web address, set Location to "Allow", then press Try again.')}else getPos()}).catch(getPos)}
+ else getPos();
+};
+$('pfrom').onchange=pickChange;
+$('pickup').onchange=()=>{const on=$('pickup').checked;$('pbox').classList.toggle('hide',!on);render();if(on){initMap();pickChange()}};
+
+/* ---------- OTP ---------- */
+$('pmob').oninput=()=>{verified=false;$('omsg').textContent=''};
+$('sotp').onclick=()=>{if(!/^[0-9]{10}$/.test($('pmob').value)){$('omsg').className='full err';$('omsg').textContent='Enter a valid 10-digit mobile number.';return}
+ otp=String(Math.floor(100000+Math.random()*900000));$('obox').classList.remove('hide');$('omsg').className='full ok';$('omsg').textContent='OTP sent to +91 '+$('pmob').value;
+ RH.toast('Demo OTP: '+otp+' (a real SMS needs a backend)',9000)};
+$('votp').onclick=()=>{if(otp&&$('otp').value==otp){verified=true;$('omsg').className='full ok';$('omsg').textContent='✓ Mobile verified'}else{verified=false;$('omsg').className='full err';$('omsg').textContent='Wrong OTP. Try again.'}};
+
+/* ---------- SUBMIT + PAYMENT ---------- */
+$('bf').onsubmit=e=>{e.preventDefault();const c=calc();
+ if(!c.n){RH.toast('Check-out must be after check-in.');return}
+ if($('pickup').checked){
+  if(!pl){RH.toast('Select a valid pickup location inside the 20 km zone.');return}
+  if(!$('ptime').value||!verified){RH.toast('Fill pickup time and verify the pickup mobile OTP.');return}}
+ $('amt').textContent='Amount payable: '+RH.money(c.total);$('perr').textContent='';$('pay').classList.remove('hide')};
+$('pcancel').onclick=()=>$('pay').classList.add('hide');
+const TABS=['Razorpay','UPI','Card','Pay at Hotel'];
+function resetPayBtn(){$('paybtn').disabled=false;$('paybtn').textContent=method=='Pay at Hotel'?'Confirm Booking':'Pay Now'}
+document.querySelectorAll('.tabs [data-m]').forEach(t=>t.onclick=()=>{method=t.dataset.m;document.querySelectorAll('.tabs [data-m]').forEach(x=>x.classList.toggle('on',x==t));
+ TABS.forEach(m=>$('m-'+m).classList.toggle('hide',m!=method));resetPayBtn()});
+$('paybtn').onclick=()=>{const er=$('perr');er.textContent='';
+ if(method=='Razorpay'){
+  if(typeof Razorpay==='undefined'){er.textContent='Razorpay could not load. Check your internet connection.';return}
+  const c=calc();$('paybtn').disabled=true;$('paybtn').textContent='Opening Razorpay...';
+  const rz=new Razorpay({key:RZP_KEY,amount:c.total*100,currency:'INR',name:'RoyalHaven Hotel',description:c.n+' night(s) - '+$('room').value,
+   prefill:{name:$('name').value,email:$('email').value,contact:$('phone').value},theme:{color:'#d4a84f'},
+   handler:r=>done(r.razorpay_payment_id),
+   modal:{ondismiss:resetPayBtn}});
+  rz.on('payment.failed',r=>{er.textContent='Payment failed: '+(r.error&&r.error.description||'please try again');resetPayBtn()});
+  rz.open();return}
+ if(method=='UPI'&&!/^[\w.\-]{2,}@[a-z]{2,}$/i.test($('upi').value)){er.textContent='Enter a valid UPI ID.';return}
+ if(method=='Card'&&(!/^\d{16}$/.test($('cn').value.replace(/\s/g,''))||!/^\d\d\/\d\d$/.test($('ce').value)||!/^\d{3}$/.test($('cv').value))){er.textContent='Check card number, expiry (MM/YY) and CVV.';return}
+ $('paybtn').disabled=true;$('paybtn').textContent='Processing...';setTimeout(()=>done(null),1600)};
+
+function done(payId){const c=calc(),paid=method!='Pay at Hotel';
+ b={id:'RH'+Date.now().toString().slice(-6),name:$('name').value,email:$('email').value.toLowerCase(),phone:$('phone').value,room:$('room').value,cin:$('cin').value,cout:$('cout').value,nights:c.n,guests:$('ad').value+'A '+$('ch').value+'C',
+  base:c.base,disc:c.disc,pickCharge:c.pick,tax:c.tax,total:c.total,pay:method,payId,paid,status:paid?'Confirmed':'Pending',note:$('note').value,created:new Date().toISOString(),
+  pickup:$('pickup').checked?{from:pl.from,time:$('ptime').value,mobile:$('pmob').value,lat:pl.lat,lng:pl.lng,km:+pl.km.toFixed(1)}:null};
+ const all=RH.get('bookings',[]);all.push(b);RH.set('bookings',all);$('pay').classList.add('hide');
+ $('main').innerHTML='<div class="center"><div class="icon">✅</div><h2>Booking '+b.status+'!</h2><p class="muted mt">Booking ID <b>'+b.id+'</b><br>'+b.room+' &middot; '+b.cin+' to '+b.cout+'<br>Total '+RH.money(b.total)+(b.disc?' (incl. '+RH.money(b.disc)+' offer discount)':'')+' &middot; '+(paid?'Paid via '+b.pay+(payId?' ('+payId+')':''):'Pay at hotel')+(b.pickup?'<br>Pickup: '+b.pickup.from+', '+b.pickup.time.replace('T',' '):'')+'</p>'+
+ '<button class="btn mt" id="dlpdf" style="width:100%">⬇ Download confirmation PDF</button>'+
+ '<button class="btn mt" id="wapdf" style="width:100%;background:#25d366;color:#fff">Send PDF on WhatsApp (+91 '+b.phone+')</button>'+
+ '<a class="btn mt" style="width:100%" href="booking.html">New Booking</a></div>';
+ $('dlpdf').onclick=()=>makePDF(b).save('RoyalHaven-'+b.id+'.pdf');
+ $('wapdf').onclick=()=>sendPDF(b)}
+
+/* ---------- PDF + WHATSAPP ---------- */
+function makePDF(b){
+ const {jsPDF}=window.jspdf,d=new jsPDF({unit:'mm',format:'a4'}),R=n=>'Rs. '+Number(n).toLocaleString('en-IN');
+ // header band: hotel name left, guest mobile number in the UPPER part (right)
+ d.setFillColor(17,24,39);d.rect(0,0,210,38,'F');
+ d.setTextColor(212,168,79);d.setFont('helvetica','bold');d.setFontSize(22);d.text('ROYALHAVEN HOTEL',14,18);
+ d.setTextColor(255,255,255);d.setFontSize(9);d.setFont('helvetica','normal');d.text('Rambaug Colony, Kothrud, Pune, Maharashtra 411038',14,26);
+ d.setFontSize(9);d.text('GUEST MOBILE (WhatsApp)',196,13,{align:'right'});
+ d.setFont('helvetica','bold');d.setFontSize(16);d.setTextColor(242,210,138);d.text('+91 '+b.phone,196,22,{align:'right'});
+ let y=52;d.setTextColor(17,24,39);d.setFontSize(16);d.text('BOOKING CONFIRMATION',14,y);
+ d.setFontSize(10);d.setFont('helvetica','normal');d.text('Booking ID: '+b.id+'     Status: '+b.status+'     Date: '+new Date(b.created).toLocaleDateString('en-IN'),14,y+7);
+ const row=(k,v)=>{y+=7;d.setFont('helvetica','bold');d.text(k,14,y);d.setFont('helvetica','normal');d.text(String(v),70,y)};
+ const head=t=>{y+=12;d.setFillColor(244,239,227);d.rect(14,y-5,182,8,'F');d.setFont('helvetica','bold');d.setFontSize(11);d.text(t,16,y+1);d.setFontSize(10);y+=3};
+ y+=8;head('GUEST DETAILS');row('Name',b.name);row('Email',b.email);row('Mobile','+91 '+b.phone);row('Guests',b.guests);
+ head('STAY DETAILS');row('Room',b.room);row('Check-in',b.cin);row('Check-out',b.cout);row('Nights',b.nights);
+ if(b.note)row('Special request',b.note.slice(0,70));
+ if(b.pickup){head('PICKUP DETAILS');row('From',b.pickup.from.slice(0,60));row('Time',b.pickup.time.replace('T',' '));row('Pickup mobile','+91 '+b.pickup.mobile);row('Distance',b.pickup.km+' km from hotel')}
+ head('PAYMENT');row('Room charge',R(b.base));if(b.disc)row(OFFER_NIGHTS+'-night offer ('+OFFER_PCT+'% off)','- '+R(b.disc));
+ row('Pickup',R(b.pickCharge));row('GST 12%',R(b.tax));
+ y+=8;d.setFont('helvetica','bold');d.setFontSize(13);d.text('TOTAL',14,y);d.text(R(b.total),196,y,{align:'right'});d.setFontSize(10);
+ row('Payment method',b.pay+(b.payId?' ('+b.payId+')':''));row('Payment status',b.paid?'PAID':'PAY AT HOTEL');
+ d.setFont('helvetica','normal');d.setFontSize(8);d.setTextColor(107,114,128);
+ d.text('Thank you for choosing RoyalHaven Hotel. Please show this confirmation at check-in.  |  +91 98765 43210  |  stay@royalhaven.com',105,287,{align:'center'});
+ return d}
+async function sendPDF(b){
+ const doc=makePDF(b),blob=doc.output('blob'),name='RoyalHaven-'+b.id+'.pdf',file=new File([blob],name,{type:'application/pdf'}),
+  text='RoyalHaven booking '+b.id+' confirmed. '+b.room+', '+b.cin+' to '+b.cout+', total '+RH.money(b.total)+'. PDF attached.';
+ if(navigator.canShare&&navigator.canShare({files:[file]})){try{await navigator.share({files:[file],text});return}catch(e){if(e.name=='AbortError')return}}
+ doc.save(name);
+ RH.toast('PDF downloaded. WhatsApp will open - attach the PDF in the chat.',7000);
+ setTimeout(()=>window.open(RH.wa(text,'91'+b.phone),'_blank'),900)}
+
+</script>
+
+<footer class="footer"><div class="container">
+<div class="footer-grid">
+<div><h3>RoyalHaven Hotel</h3><p>Luxury, comfort and memorable hospitality in the heart of the city. Your perfect stay starts here.</p></div>
+<div><h3>Quick Links</h3><a href="rooms.html">Rooms</a><a href="services.html">Services</a><a href="booking.html">Booking</a></div>
+<div><h3>Support</h3><a href="contact.html">Contact Us</a><a href="about.html">About Us</a><a href="login.html">Guest Login</a><a href="login.html?admin=1">Admin Login</a></div>
+<div><h3>Contact</h3><p>📍 Pune, Maharashtra</p><p>☎ +91 98765 43210</p><p>✉ stay@royalhaven.com</p></div>
+</div><div class="copyright">© 2026 RoyalHaven Hotel. All Rights Reserved.</div>
+</div></footer>
+</body></html>

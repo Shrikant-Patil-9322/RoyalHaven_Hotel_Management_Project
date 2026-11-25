@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Register | RoyalHaven Hotel</title>
+<style>
+:root{
+  --gold:#d4a84f;--gold2:#f2d28a;--dark:#111827;--dark2:#1f2937;
+  --cream:#faf7f0;--white:#fff;--muted:#6b7280;--shadow:0 15px 40px rgba(0,0,0,.12);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:Arial,Helvetica,sans-serif;color:var(--dark);background:var(--cream);line-height:1.6}
+a{text-decoration:none;color:inherit}
+img{max-width:100%;display:block}
+.container{width:min(1120px,92%);margin:auto}
+.navbar{position:sticky;top:0;z-index:1000;background:rgba(17,24,39,.96);backdrop-filter:blur(10px);color:#fff}
+.nav-inner{min-height:72px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.logo{font-size:25px;font-weight:800;letter-spacing:1px}.logo span{color:var(--gold)}
+.nav-links{display:flex;gap:22px;list-style:none;align-items:center;flex-wrap:wrap}
+.nav-links a{font-size:14px;color:#eee;transition:.3s}.nav-links a:hover{color:var(--gold);transform:translateY(-2px)}
+.btn{display:inline-block;padding:13px 22px;border-radius:8px;background:var(--gold);color:#111;font-weight:700;border:0;cursor:pointer;transition:.3s}
+.btn:hover{transform:translateY(-3px);box-shadow:0 10px 22px rgba(212,168,79,.3)}
+.btn-outline{background:transparent;color:#fff;border:1px solid var(--gold)}
+.hero{min-height:88vh;background:linear-gradient(90deg,rgba(0,0,0,.72),rgba(0,0,0,.2)),url('https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1800&q=85') center/cover;display:grid;place-items:center;color:#fff;text-align:center}
+.hero-content{animation:fadeUp 1s ease both}
+.hero h1{font-size:clamp(40px,7vw,76px);line-height:1.05;margin-bottom:18px}
+.hero p{font-size:18px;max-width:680px;margin:0 auto 28px;color:#eee}
+.badge{display:inline-block;color:var(--gold2);letter-spacing:3px;font-size:13px;font-weight:700;margin-bottom:14px}
+.section{padding:80px 0}.section-title{text-align:center;margin-bottom:42px}.section-title h2{font-size:38px;margin-bottom:10px}.section-title p{color:var(--muted)}
+.grid{display:grid;gap:25px}.grid-3{grid-template-columns:repeat(3,1fr)}.grid-2{grid-template-columns:repeat(2,1fr)}
+.card{background:#fff;border-radius:16px;overflow:hidden;box-shadow:var(--shadow);transition:.35s}.card:hover{transform:translateY(-8px)}
+.card-body{padding:23px}.card h3{margin-bottom:8px;font-size:22px}.muted{color:var(--muted)}
+.card img{height:230px;width:100%;object-fit:cover}
+.price{font-size:22px;color:#a8781f;font-weight:800;margin:10px 0}.price small{font-size:13px;color:var(--muted);font-weight:400}
+.features{display:flex;gap:9px;flex-wrap:wrap;margin:15px 0}.pill{background:#f4efe3;padding:6px 10px;border-radius:20px;font-size:12px}
+.banner{padding:70px 0;background:linear-gradient(120deg,#111827,#374151);color:#fff;text-align:center}
+.page-head{padding:90px 0;background:linear-gradient(90deg,rgba(0,0,0,.72),rgba(0,0,0,.3)),url('https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?auto=format&fit=crop&w=1800&q=80') center/cover;color:#fff;text-align:center}
+.page-head h1{font-size:52px}.page-head p{color:#ddd}
+.form-card{background:#fff;padding:30px;border-radius:16px;box-shadow:var(--shadow)}
+.form-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+label{font-weight:700;font-size:14px;display:block;margin-bottom:6px}
+input,select,textarea{width:100%;padding:13px;border:1px solid #ddd;border-radius:8px;outline:none;font:inherit;background:#fff}
+input:focus,select:focus,textarea:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(212,168,79,.12)}
+textarea{min-height:140px;resize:vertical}.full{grid-column:1/-1}
+.footer{background:#0b1120;color:#cbd5e1;padding:55px 0 20px}.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:35px}.footer h3{color:#fff;margin-bottom:14px}.footer a{display:block;margin:8px 0;color:#cbd5e1}.footer a:hover{color:var(--gold)}.copyright{text-align:center;border-top:1px solid #273244;margin-top:35px;padding-top:18px;font-size:13px}
+.stat{background:#fff;padding:28px;border-radius:14px;text-align:center;box-shadow:var(--shadow)}.stat h3{font-size:34px;color:#a8781f}
+.quote{background:#fff;padding:28px;border-left:4px solid var(--gold);box-shadow:var(--shadow);border-radius:12px}
+.gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.gallery img{height:230px;width:100%;object-fit:cover;border-radius:12px;transition:.4s}.gallery img:hover{transform:scale(1.04);filter:brightness(.8)}
+.icon{font-size:30px;margin-bottom:10px}.center{text-align:center}
+.auth{min-height:calc(100vh - 72px);display:grid;place-items:center;padding:50px 0;background:linear-gradient(135deg,#f8f1df,#fff)}
+.auth-box{width:min(450px,92%);background:#fff;padding:35px;border-radius:18px;box-shadow:var(--shadow)}
+.auth-box h1{text-align:center;margin-bottom:8px}.auth-box .muted{text-align:center;margin-bottom:25px}
+.mt{margin-top:20px}
+@keyframes fadeUp{from{opacity:0;transform:translateY(35px)}to{opacity:1;transform:translateY(0)}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.float{animation:float 3s ease-in-out infinite}
+@media(max-width:850px){
+ .nav-inner{padding:12px 0;align-items:flex-start}.nav-links{gap:12px}
+ .grid-3,.grid-2,.footer-grid{grid-template-columns:1fr}
+ .form-grid{grid-template-columns:1fr}.full{grid-column:auto}
+ .gallery{grid-template-columns:repeat(2,1fr)}.page-head h1{font-size:40px}
+}
+@media(max-width:520px){.nav-links{font-size:12px}.logo{font-size:20px}.hero{min-height:78vh}.section{padding:55px 0}.gallery{grid-template-columns:1fr}}
+</style><link rel="stylesheet" href="css/extra.css">
+<script src="js/app.js"></script>
+</head><body>
+<nav class="navbar"><div class="container nav-inner">
+<a class="logo" href="index.html">ROYAL<span>HAVEN</span></a>
+<ul class="nav-links">
+<li><a href="index.html">Home</a></li><li><a href="rooms.html">Rooms</a></li>
+<li><a href="services.html">Services</a></li><li><a href="gallery.html">Gallery</a></li>
+<li><a href="about.html">About</a></li><li><a href="contact.html">Contact</a></li>
+<li><a class="btn" href="booking.html">Book Now</a></li>
+</ul></div></nav>
+
+<section class="auth"><div class="auth-box">
+<h1>Create Account</h1><p class="muted">Join RoyalHaven for faster bookings</p>
+<form id="rf"><label>Full Name</label><input id="n" required placeholder="Your name">
+<label class="mt">Email</label><input id="e" type="email" required placeholder="you@example.com">
+<label class="mt">Mobile Number</label><input id="p" type="tel" required pattern="[0-9]{10}" maxlength="10" placeholder="10-digit mobile">
+<label class="mt">Password</label><input id="w" type="password" minlength="6" required placeholder="Minimum 6 characters">
+<p class="err" id="er"></p><button class="btn mt" style="width:100%" type="submit">Register</button></form>
+<p class="center mt muted">Already registered? <a href="login.html" style="color:#a8781f;font-weight:700">Login</a></p>
+</div></section>
+<script>
+document.getElementById('rf').onsubmit=e=>{e.preventDefault();const g=i=>document.getElementById(i).value.trim(),us=RH.get('users',[]),em=g('e').toLowerCase();
+ if(us.some(u=>u.email==em)){document.getElementById('er').textContent='This email is already registered.';return}
+ us.push({name:g('n'),email:em,phone:g('p'),password:document.getElementById('w').value,joined:new Date().toISOString()});RH.set('users',us);
+ RH.toast('Account created! Please login.');setTimeout(()=>location.href='login.html',1200)};
+</script>
+
+<footer class="footer"><div class="container">
+<div class="footer-grid">
+<div><h3>RoyalHaven Hotel</h3><p>Luxury, comfort and memorable hospitality in the heart of the city. Your perfect stay starts here.</p></div>
+<div><h3>Quick Links</h3><a href="rooms.html">Rooms</a><a href="services.html">Services</a><a href="booking.html">Booking</a></div>
+<div><h3>Support</h3><a href="contact.html">Contact Us</a><a href="about.html">About Us</a><a href="login.html">Guest Login</a><a href="login.html?admin=1">Admin Login</a></div>
+<div><h3>Contact</h3><p>📍 Pune, Maharashtra</p><p>☎ +91 98765 43210</p><p>✉ stay@royalhaven.com</p></div>
+</div><div class="copyright">© 2026 RoyalHaven Hotel. All Rights Reserved.</div>
+</div></footer>
+</body></html>
